@@ -1,210 +1,2377 @@
 <!DOCTYPE html>
+
 <html lang="en" data-theme="light" data-layout="desktop">
+
 <head>
+
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>LEARN ENGLISH FOUNDATIONAL SKILLS ONLINE</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+
   <style>
+
     :root {
+
       --ink: #1c2333;
+
       --muted: #5a6272;
+
       --paper: #f4f2ec;
+
       --cream: #fffcf7;
+
       --accent: #2563eb;
+
       --accent-hover: #1d4ed8;
+
       --accent-soft: #e8effe;
+
       --accent-border: rgba(37, 99, 235, 0.22);
+
       --highlight: #0d9488;
+
       --gold: #b45309;
+
       --border: rgba(28, 35, 51, 0.1);
+
       --shadow: 0 20px 50px rgba(28, 35, 51, 0.08);
+
       --radius: 16px;
+
       --max: 960px;
+
       --max-mobile: 480px;
+
       --toolbar-bg: rgba(255, 252, 247, 0.92);
+
       --focus: 0 0 0 3px rgba(37, 99, 235, 0.35);
+
     }
+
+
 
     [data-theme="dark"] {
+
       --ink: #e8eaf0;
+
       --muted: #9aa3b2;
+
       --paper: #0f1218;
+
       --cream: #171b24;
+
       --accent: #60a5fa;
+
       --accent-hover: #93c5fd;
+
       --accent-soft: rgba(96, 165, 250, 0.12);
+
       --accent-border: rgba(96, 165, 250, 0.35);
+
       --highlight: #2dd4bf;
+
       --gold: #fbbf24;
+
       --border: rgba(232, 234, 240, 0.12);
+
       --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+
       --toolbar-bg: rgba(15, 18, 24, 0.92);
+
       --focus: 0 0 0 3px rgba(96, 165, 250, 0.45);
+
     }
 
-    /* --- BASIC STYLES --- */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { 
-      font-family: "DM Sans", sans-serif; 
-      color: var(--ink); 
-      background: var(--paper); 
-      line-height: 1.6;
+
+
+    * {
+
+      box-sizing: border-box;
+
+      margin: 0;
+
+      padding: 0;
+
     }
 
-    .wrap { max-width: var(--max); margin: 0 auto; padding: 2rem; }
-    .card, .panel { background: var(--cream); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1rem; }
 
-    /* --- SMART AUDIO LOGIC --- */
-    .audio-control-group {
-      display: none !important; /* Hidden by default */
+
+    html {
+
+      scroll-behavior: smooth;
+
+    }
+
+
+
+    body {
+
+      font-family: "DM Sans", system-ui, sans-serif;
+
+      font-size: 1.05rem;
+
+      line-height: 1.65;
+
+      color: var(--ink);
+
+      background: var(--paper);
+
+      background-image:
+
+        radial-gradient(ellipse 120% 80% at 100% -20%, rgba(37, 99, 235, 0.07), transparent 50%),
+
+        radial-gradient(ellipse 80% 60% at 0% 100%, rgba(13, 148, 136, 0.06), transparent 45%);
+
+      min-height: 100vh;
+
+    }
+
+
+
+    [data-theme="dark"] body {
+
+      background-image:
+
+        radial-gradient(ellipse 120% 80% at 100% -20%, rgba(96, 165, 250, 0.08), transparent 50%),
+
+        radial-gradient(ellipse 80% 60% at 0% 100%, rgba(45, 212, 191, 0.05), transparent 45%);
+
+    }
+
+
+
+    .toolbar {
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 50;
+
+      display: flex;
+
+      flex-wrap: wrap;
+
       align-items: center;
-      gap: 12px;
-      margin-bottom: 1rem;
+
+      justify-content: flex-end;
+
+      gap: 0.5rem;
+
+      padding: 0.65rem 1rem;
+
+      background: var(--toolbar-bg);
+
+      backdrop-filter: blur(10px);
+
+      border-bottom: 1px solid var(--border);
+
     }
 
-    /* Only show audio when the quiz shell has this class */
-    .oral-mode .audio-control-group {
-      display: flex !important;
+
+
+    .toolbar-label {
+
+      font-size: 0.7rem;
+
+      letter-spacing: 0.06em;
+
+      text-transform: uppercase;
+
+      color: var(--muted);
+
+      margin-right: 0.25rem;
+
     }
+
+
+
+    .toggle-group {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 0.35rem;
+
+      padding: 0.25rem 0.35rem;
+
+      border-radius: 999px;
+
+      border: 1px solid var(--border);
+
+      background: var(--cream);
+
+    }
+
+
+
+    [data-theme="dark"] .toggle-group {
+
+      background: var(--cream);
+
+    }
+
+
+
+    .toggle-btn {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 0.35rem;
+
+      min-height: 2.25rem;
+
+      padding: 0.35rem 0.75rem;
+
+      font-family: inherit;
+
+      font-size: 0.8rem;
+
+      font-weight: 600;
+
+      color: var(--muted);
+
+      background: transparent;
+
+      border: none;
+
+      border-radius: 999px;
+
+      cursor: pointer;
+
+      transition: background 0.15s ease, color 0.15s ease;
+
+    }
+
+
+
+    .toggle-btn:hover {
+
+      color: var(--ink);
+
+      background: var(--accent-soft);
+
+    }
+
+
+
+    .toggle-btn[aria-pressed="true"] {
+
+      color: var(--ink);
+
+      background: var(--accent-soft);
+
+      box-shadow: 0 1px 0 var(--border);
+
+    }
+
+
+
+    .toggle-btn:focus-visible {
+
+      outline: none;
+
+      box-shadow: var(--focus);
+
+    }
+
+
+
+    .toggle-btn .icon {
+
+      width: 1.1rem;
+
+      height: 1.1rem;
+
+      flex-shrink: 0;
+
+      opacity: 0.9;
+
+    }
+
+
+
+    .wrap {
+
+      max-width: var(--max);
+
+      margin: 0 auto;
+
+      padding: 0 1.5rem 4rem;
+
+      transition: max-width 0.25s ease;
+
+    }
+
+
+
+    [data-layout="mobile"] .wrap {
+
+      max-width: var(--max-mobile);
+
+    }
+
+
+
+    header.site {
+
+      padding: 2rem 0 1.75rem;
+
+      border-bottom: 1px solid var(--border);
+
+    }
+
+
+
+    .eyebrow {
+
+      font-size: 0.75rem;
+
+      letter-spacing: 0.12em;
+
+      text-transform: uppercase;
+
+      color: var(--highlight);
+
+      font-weight: 700;
+
+      margin-bottom: 0.65rem;
+
+    }
+
+
+
+    h1 {
+
+      font-family: "Fraunces", Georgia, serif;
+
+      font-size: clamp(1.55rem, 4.2vw, 2.4rem);
+
+      font-weight: 700;
+
+      line-height: 1.18;
+
+      letter-spacing: -0.02em;
+
+      color: var(--ink);
+
+      max-width: 22ch;
+
+    }
+
+
+
+    .hero-lead {
+
+      margin-top: 1.1rem;
+
+      color: var(--muted);
+
+      max-width: 54ch;
+
+      font-size: 1.02rem;
+
+    }
+
+
+
+    .audience-note {
+
+      margin-top: 1rem;
+
+      font-size: 0.92rem;
+
+      color: var(--muted);
+
+      max-width: 58ch;
+
+      padding: 0.75rem 1rem;
+
+      border-radius: var(--radius);
+
+      border: 1px dashed var(--border);
+
+      background: var(--cream);
+
+    }
+
+
+
+    section {
+
+      margin-top: 2.5rem;
+
+    }
+
+
+
+    h2 {
+
+      font-family: "Fraunces", Georgia, serif;
+
+      font-size: 1.42rem;
+
+      font-weight: 600;
+
+      margin-bottom: 0.8rem;
+
+      color: var(--ink);
+
+    }
+
+
+
+    h3 {
+
+      font-size: 1.05rem;
+
+      font-weight: 600;
+
+      margin-bottom: 0.5rem;
+
+      color: var(--ink);
+
+    }
+
+
+
+    p {
+
+      margin-bottom: 1rem;
+
+      color: var(--muted);
+
+    }
+
+
+
+    p:last-child {
+
+      margin-bottom: 0;
+
+    }
+
+
+
+    .card {
+
+      background: var(--cream);
+
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      padding: 1.5rem 1.65rem;
+
+      box-shadow: var(--shadow);
+
+    }
+
+
+
+    .card + .card {
+
+      margin-top: 1.15rem;
+
+    }
+
+
+
+    .pill-list {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 0.5rem;
+
+      margin-top: 1.15rem;
+
+    }
+
+
+
+    [data-layout="mobile"] .pill-list {
+
+      flex-direction: column;
+
+    }
+
+
+
+    [data-layout="mobile"] .pill {
+
+      text-align: center;
+
+      justify-content: center;
+
+    }
+
+
+
+    .pill {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      font-size: 0.82rem;
+
+      font-weight: 600;
+
+      padding: 0.5rem 0.85rem;
+
+      border-radius: 999px;
+
+      background: var(--accent-soft);
+
+      color: var(--accent);
+
+      text-decoration: none;
+
+      border: 1px solid var(--accent-border);
+
+      transition: background 0.15s ease, transform 0.15s ease;
+
+    }
+
+
+
+    .pill:hover,
+
+    .pill:focus-visible {
+
+      background: color-mix(in srgb, var(--accent-soft) 85%, var(--accent) 15%);
+
+      outline: none;
+
+      transform: translateY(-1px);
+
+    }
+
+
+
+    .skills-grid {
+
+      display: grid;
+
+      gap: 1rem;
+
+      margin-top: 1rem;
+
+    }
+
+
+
+    @media (min-width: 640px) {
+
+      [data-layout="desktop"] .skills-grid {
+
+        grid-template-columns: 1fr 1fr;
+
+      }
+
+    }
+
+
+
+    [data-layout="mobile"] .skills-grid {
+
+      grid-template-columns: 1fr;
+
+    }
+
+
+
+    .skill-card {
+
+      background: var(--cream);
+
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      padding: 1.35rem 1.4rem 1.25rem;
+
+      display: flex;
+
+      flex-direction: column;
+
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    }
+
+
+
+    .skill-card:hover {
+
+      border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+
+      box-shadow: var(--shadow);
+
+    }
+
+
+
+    .skill-card h3 {
+
+      font-family: "Fraunces", Georgia, serif;
+
+      font-size: 1.12rem;
+
+      color: var(--highlight);
+
+      margin-bottom: 0.55rem;
+
+    }
+
+
+
+    .skill-card p {
+
+      font-size: 0.95rem;
+
+      line-height: 1.62;
+
+      flex: 1;
+
+    }
+
+
+
+    .skill-card .course-actions {
+
+      margin-top: 1.15rem;
+
+      padding-top: 1rem;
+
+      border-top: 1px solid var(--border);
+
+    }
+
+
+
+    .btn-course {
+
+      width: 100%;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      min-height: 2.75rem;
+
+      padding: 0.6rem 1rem;
+
+      font-family: inherit;
+
+      font-size: 0.92rem;
+
+      font-weight: 700;
+
+      letter-spacing: 0.02em;
+
+      color: #fff;
+
+      background: linear-gradient(165deg, var(--accent) 0%, #1e40af 100%);
+
+      border: none;
+
+      border-radius: 12px;
+
+      cursor: pointer;
+
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+
+      transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+
+    }
+
+
+
+    [data-theme="dark"] .btn-course {
+
+      background: linear-gradient(165deg, #3b82f6 0%, #1d4ed8 100%);
+
+      box-shadow: 0 4px 18px rgba(59, 130, 246, 0.35);
+
+    }
+
+
+
+    .btn-course:hover {
+
+      filter: brightness(1.05);
+
+      transform: translateY(-1px);
+
+    }
+
+
+
+    .btn-course:focus-visible {
+
+      outline: none;
+
+      box-shadow: var(--focus), 0 4px 14px rgba(37, 99, 235, 0.35);
+
+    }
+
+
+
+    .note {
+
+      margin-top: 1.35rem;
+
+      padding: 1rem 1.15rem;
+
+      border-left: 4px solid var(--gold);
+
+      background: color-mix(in srgb, var(--gold) 12%, var(--cream));
+
+      border-radius: 0 var(--radius) var(--radius) 0;
+
+      font-size: 0.95rem;
+
+      color: var(--muted);
+
+    }
+
+
+
+    [data-theme="dark"] .note {
+
+      background: color-mix(in srgb, var(--gold) 15%, var(--cream));
+
+    }
+
+
+
+    .note strong {
+
+      color: var(--ink);
+
+      font-weight: 600;
+
+    }
+
+
+
+    footer {
+
+      margin-top: 2.75rem;
+
+      padding-top: 1.5rem;
+
+      border-top: 1px solid var(--border);
+
+      font-size: 0.88rem;
+
+      color: var(--muted);
+
+      text-align: center;
+
+    }
+
+
+
+    /* Modal */
+
+    dialog.modal {
+
+      width: min(92vw, 720px);
+
+      max-width: 720px;
+
+      padding: 0;
+
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      background: var(--cream);
+
+      color: var(--ink);
+
+      box-shadow: var(--shadow);
+
+      margin: auto;
+
+    }
+
+
+
+    dialog.modal::backdrop {
+
+      background: rgba(15, 18, 24, 0.55);
+
+      backdrop-filter: blur(4px);
+
+    }
+
+
+
+    .modal-inner {
+
+      padding: 1.5rem 1.5rem 1.35rem;
+
+    }
+
+
+
+    .modal-inner h3 {
+
+      font-family: "Fraunces", Georgia, serif;
+
+      font-size: 1.2rem;
+
+      margin-bottom: 0.75rem;
+
+      padding-right: 2rem;
+
+      color: var(--ink);
+
+    }
+
+
+
+    .modal-inner p {
+
+      font-size: 0.96rem;
+
+      line-height: 1.6;
+
+      margin-bottom: 1rem;
+
+    }
+
+
+
+    .modal-close {
+
+      position: absolute;
+
+      top: 0.85rem;
+
+      right: 0.85rem;
+
+      width: 2.25rem;
+
+      height: 2.25rem;
+
+      display: grid;
+
+      place-items: center;
+
+      font-size: 1.35rem;
+
+      line-height: 1;
+
+      color: var(--muted);
+
+      background: transparent;
+
+      border: none;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      transition: background 0.15s ease, color 0.15s ease;
+
+    }
+
+
+
+    .modal-close:hover {
+
+      background: var(--accent-soft);
+
+      color: var(--ink);
+
+    }
+
+
+
+    .modal-close:focus-visible {
+
+      outline: none;
+
+      box-shadow: var(--focus);
+
+    }
+
+
+
+    .modal-wrap {
+
+      position: relative;
+
+    }
+
+
+
+    .modal-subtitle {
+
+      font-size: 0.9rem;
+
+      color: var(--muted);
+
+      margin-top: -0.25rem;
+
+      margin-bottom: 1rem;
+
+    }
+
+
+
+    .btn-assessment {
+
+      width: 100%;
+
+      min-height: 2.75rem;
+
+      margin-top: 0.25rem;
+
+      padding: 0.6rem 1rem;
+
+      font-family: inherit;
+
+      font-size: 0.95rem;
+
+      font-weight: 700;
+
+      color: var(--ink);
+
+      background: var(--accent-soft);
+
+      border: 1px solid var(--accent-border);
+
+      border-radius: 12px;
+
+      cursor: pointer;
+
+      transition: background 0.15s ease, transform 0.15s ease;
+
+    }
+
+
+
+    .btn-assessment:hover {
+
+      background: color-mix(in srgb, var(--accent-soft) 70%, var(--accent) 30%);
+
+      color: #fff;
+
+    }
+
+
+
+    .btn-assessment:focus-visible {
+
+      outline: none;
+
+      box-shadow: var(--focus);
+
+    }
+
+
+
+    .btn-assessment.is-hidden {
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transform: translateY(6px);
+
+    }
+
+
+
+    .btn-assessment.is-visible {
+
+      opacity: 1;
+
+      pointer-events: auto;
+
+      transform: translateY(0);
+
+      transition: opacity 0.35s ease, transform 0.35s ease;
+
+    }
+
+
+
+    .dialog-feedback {
+
+      font-size: 0.92rem;
+
+      color: var(--highlight);
+
+      font-weight: 600;
+
+      margin-top: 0.85rem;
+
+      margin-bottom: 0;
+
+    }
+
+
+
+    .dialog-feedback[hidden] {
+
+      display: none;
+
+    }
+
+
+
+    .quiz-shell[hidden],
+
+    .course-intro[hidden],
+
+    .quiz-result[hidden] {
+
+      display: none;
+
+    }
+
+
+
+    .quiz-meta {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 1rem;
+
+      margin-bottom: 1rem;
+
+      font-size: 0.9rem;
+
+      color: var(--muted);
+
+    }
+
+
+
+    .quiz-progress {
+
+      width: 100%;
+
+      height: 0.65rem;
+
+      overflow: hidden;
+
+      border-radius: 999px;
+
+      background: color-mix(in srgb, var(--paper) 70%, var(--cream));
+
+      border: 1px solid var(--border);
+
+      margin-bottom: 1.1rem;
+
+    }
+
+
+
+    .quiz-progress-bar {
+
+      width: 0%;
+
+      height: 100%;
+
+      background: linear-gradient(90deg, var(--highlight), var(--accent));
+
+      transition: width 0.2s ease;
+
+    }
+
+
+
+    .quiz-question {
+
+      font-family: "Fraunces", Georgia, serif;
+
+      font-size: 1.2rem;
+
+      line-height: 1.35;
+
+      margin-bottom: 1rem;
+
+      color: var(--ink);
+
+    }
+
+
+
+    .quiz-audio {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: flex-start;
+
+      gap: 0.6rem;
+
+      margin-bottom: 0.85rem;
+
+    }
+
+
 
     .btn-audio {
+
       display: inline-flex;
+
       align-items: center;
-      gap: 8px;
-      padding: 0.6rem 1rem;
+
+      justify-content: center;
+
+      gap: 0.5rem;
+
+      min-height: 2.5rem;
+
+      padding: 0.55rem 0.9rem;
+
       border-radius: 999px;
+
       border: 1px solid var(--accent-border);
+
       background: var(--accent-soft);
+
       color: var(--accent);
-      font-weight: 700;
+
+      font: inherit;
+
+      font-weight: 800;
+
       cursor: pointer;
+
+      transition: transform 0.15s ease, filter 0.15s ease;
+
     }
 
-    /* --- BUTTONS & INPUTS --- */
-    .btn-course, .btn-next {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 700;
+
+
+    .btn-audio:hover {
+
+      filter: brightness(1.03);
+
+      transform: translateY(-1px);
+
     }
+
+
+
+    .btn-audio:focus-visible {
+
+      outline: none;
+
+      box-shadow: var(--focus);
+
+    }
+
+
+
+    .btn-audio[disabled] {
+
+      opacity: 0.55;
+
+      cursor: not-allowed;
+
+      transform: none;
+
+      filter: none;
+
+    }
+
+
+
+    .quiz-audio-note {
+
+      font-size: 0.9rem;
+
+      color: var(--muted);
+
+    }
+
+
+
+    .audio-warning {
+
+      font-size: 0.9rem;
+
+      color: var(--muted);
+
+      margin-top: 0.35rem;
+
+    }
+
+
+
+    /* Hide audio UI in quiz views (logic remains active) */
+
+    #quiz-audio,
+
+    #daily-audio,
+
+    #quiz-audio-note,
+
+    #daily-audio-note {
+
+      display: none !important;
+
+    }
+
+
+
+    .choice-list {
+
+      display: grid;
+
+      gap: 0.8rem;
+
+    }
+
+
 
     .choice-btn {
+
       width: 100%;
+
       text-align: left;
-      padding: 1rem;
-      margin-bottom: 0.5rem;
-      border-radius: 10px;
+
+      padding: 0.95rem 1rem;
+
+      border-radius: 14px;
+
       border: 1px solid var(--border);
-      background: var(--cream);
+
+      background: color-mix(in srgb, var(--cream) 82%, var(--paper));
+
+      color: var(--ink);
+
+      font: inherit;
+
       cursor: pointer;
+
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+
     }
 
-    /* --- HIDING ELEMENTS --- */
-    [hidden] { display: none !important; }
+
+
+    .choice-btn:hover,
+
+    .choice-btn:focus-visible {
+
+      outline: none;
+
+      transform: translateY(-1px);
+
+      border-color: var(--accent-border);
+
+      box-shadow: var(--focus);
+
+    }
+
+
+
+    .choice-btn.is-correct {
+
+      border-color: rgba(34, 197, 94, 0.65);
+
+      background: rgba(34, 197, 94, 0.16);
+
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+
+    }
+
+
+
+    .choice-btn.is-wrong {
+
+      border-color: rgba(239, 68, 68, 0.65);
+
+      background: rgba(239, 68, 68, 0.14);
+
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.18);
+
+    }
+
+
+
+    .choice-btn.is-dimmed {
+
+      opacity: 0.78;
+
+    }
+
+
+
+    .quiz-feedback {
+
+      min-height: 1.6rem;
+
+      margin-top: 1rem;
+
+      font-weight: 700;
+
+      color: var(--muted);
+
+    }
+
+
+
+    .quiz-feedback.correct {
+
+      color: #16a34a;
+
+    }
+
+
+
+    .quiz-feedback.wrong {
+
+      color: #dc2626;
+
+    }
+
+
+
+    .quiz-actions {
+
+      display: flex;
+
+      justify-content: flex-end;
+
+      margin-top: 1rem;
+
+      gap: 0.6rem;
+
+    }
+
+
+
+    .btn-next,
+
+    .btn-restart {
+
+      min-height: 2.75rem;
+
+      padding: 0.65rem 1.1rem;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background: linear-gradient(165deg, var(--accent) 0%, #1e40af 100%);
+
+      color: #fff;
+
+      font: inherit;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: transform 0.15s ease, filter 0.15s ease;
+
+    }
+
+
+
+    .btn-secondary {
+
+      min-height: 2.75rem;
+
+      padding: 0.65rem 1.1rem;
+
+      border-radius: 12px;
+
+      border: 1px solid var(--accent-border);
+
+      background: var(--accent-soft);
+
+      color: var(--accent);
+
+      font: inherit;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      transition: transform 0.15s ease, filter 0.15s ease;
+
+    }
+
+
+
+    .btn-secondary:hover {
+
+      filter: brightness(1.03);
+
+      transform: translateY(-1px);
+
+    }
+
+
+
+    .btn-secondary:focus-visible {
+
+      outline: none;
+
+      box-shadow: var(--focus);
+
+    }
+
+
+
+    .btn-next:hover,
+
+    .btn-restart:hover {
+
+      filter: brightness(1.05);
+
+      transform: translateY(-1px);
+
+    }
+
+
+
+    .btn-next[disabled] {
+
+      opacity: 0.45;
+
+      cursor: not-allowed;
+
+      transform: none;
+
+      filter: none;
+
+    }
+
+
+
+    .quiz-result {
+
+      padding-top: 0.35rem;
+
+    }
+
+
+
+    .result-score {
+
+      font-family: "Fraunces", Georgia, serif;
+
+      font-size: 1.6rem;
+
+      color: var(--ink);
+
+      margin-bottom: 0.35rem;
+
+    }
+
+
+
+    .result-level {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      padding: 0.4rem 0.8rem;
+
+      margin-bottom: 1rem;
+
+      border-radius: 999px;
+
+      background: var(--accent-soft);
+
+      border: 1px solid var(--accent-border);
+
+      color: var(--accent);
+
+      font-size: 0.9rem;
+
+      font-weight: 700;
+
+    }
+
+
+
+    .auth-form {
+
+      margin-top: 0.75rem;
+
+      display: grid;
+
+      gap: 0.85rem;
+
+    }
+
+
+
+    .field {
+
+      display: grid;
+
+      gap: 0.35rem;
+
+    }
+
+
+
+    .field label {
+
+      font-size: 0.9rem;
+
+      color: var(--muted);
+
+      font-weight: 700;
+
+    }
+
+
+
+    .field input {
+
+      width: 100%;
+
+      min-height: 2.75rem;
+
+      padding: 0.6rem 0.85rem;
+
+      border-radius: 12px;
+
+      border: 1px solid var(--border);
+
+      background: color-mix(in srgb, var(--cream) 80%, var(--paper));
+
+      color: var(--ink);
+
+      font: inherit;
+
+    }
+
+
+
+    .field input:focus-visible {
+
+      outline: none;
+
+      box-shadow: var(--focus);
+
+      border-color: var(--accent-border);
+
+    }
+
+
+
+    .auth-hint {
+
+      font-size: 0.9rem;
+
+      color: var(--muted);
+
+      margin-top: -0.25rem;
+
+    }
+
+
+
+    /* Study page */
+
+    .study-page[hidden] {
+
+      display: none;
+
+    }
+
+
+
+    .study-hero {
+
+      padding: 2rem 0 1.5rem;
+
+      border-bottom: 1px solid var(--border);
+
+    }
+
+
+
+    .study-title {
+
+      font-family: "Fraunces", Georgia, serif;
+
+      font-size: clamp(1.4rem, 4vw, 2rem);
+
+      letter-spacing: -0.02em;
+
+      color: var(--ink);
+
+    }
+
+
+
+    .study-sub {
+
+      margin-top: 0.65rem;
+
+      color: var(--muted);
+
+      max-width: 70ch;
+
+    }
+
+
+
+    .study-grid {
+
+      display: grid;
+
+      gap: 1rem;
+
+      margin-top: 1.5rem;
+
+    }
+
+
+
+    @media (min-width: 860px) {
+
+      .study-grid {
+
+        grid-template-columns: 1.25fr 0.75fr;
+
+        align-items: start;
+
+      }
+
+    }
+
+
+
+    .panel {
+
+      background: var(--cream);
+
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      padding: 1.25rem 1.25rem;
+
+      box-shadow: var(--shadow);
+
+    }
+
+
+
+    .panel h2 {
+
+      font-size: 1.25rem;
+
+      margin-bottom: 0.65rem;
+
+    }
+
+
+
+    .badge-row {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 0.5rem;
+
+      margin-top: 0.75rem;
+
+    }
+
+
+
+    .badge {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      padding: 0.35rem 0.7rem;
+
+      border-radius: 999px;
+
+      background: var(--accent-soft);
+
+      border: 1px solid var(--accent-border);
+
+      color: var(--accent);
+
+      font-size: 0.85rem;
+
+      font-weight: 800;
+
+    }
+
+
+
+    .day-nav {
+
+      display: flex;
+
+      gap: 0.5rem;
+
+      margin-top: 0.9rem;
+
+    }
+
+
+
+    .day-nav button {
+
+      flex: 1;
+
+    }
+
+
+
+    .lesson-list {
+
+      margin-top: 0.85rem;
+
+      display: grid;
+
+      gap: 0.75rem;
+
+    }
+
+
+
+    .lesson {
+
+      border: 1px solid var(--border);
+
+      border-radius: 14px;
+
+      padding: 0.9rem 0.95rem;
+
+      background: color-mix(in srgb, var(--cream) 86%, var(--paper));
+
+    }
+
+
+
+    .lesson-title {
+
+      font-weight: 900;
+
+      color: var(--ink);
+
+      margin-bottom: 0.35rem;
+
+    }
+
+
+
+    .lesson ul {
+
+      margin-left: 1.1rem;
+
+      color: var(--muted);
+
+    }
+
+
+
+    .lesson li {
+
+      margin: 0.2rem 0;
+
+    }
+
+
+
+    .video-grid {
+
+      display: grid;
+
+      gap: 0.9rem;
+
+      margin-top: 0.85rem;
+
+    }
+
+
+
+    @media (min-width: 560px) {
+
+      .video-grid {
+
+        grid-template-columns: 1fr 1fr;
+
+      }
+
+    }
+
+
+
+    .video {
+
+      border: 1px solid var(--border);
+
+      border-radius: 14px;
+
+      overflow: hidden;
+
+      background: #000;
+
+    }
+
+
+
+    .video iframe {
+
+      display: block;
+
+      width: 100%;
+
+      aspect-ratio: 16 / 9;
+
+      border: 0;
+
+    }
+
+
+
+    .games {
+
+      margin-top: 1rem;
+
+      display: grid;
+
+      gap: 1rem;
+
+    }
+
+
+
+    @media (min-width: 760px) {
+
+      .games {
+
+        grid-template-columns: 1fr 1fr;
+
+      }
+
+    }
+
+
+
+    .game {
+
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      padding: 1rem;
+
+      background: color-mix(in srgb, var(--cream) 84%, var(--paper));
+
+    }
+
+
+
+    .game h3 {
+
+      font-family: "Fraunces", Georgia, serif;
+
+      color: var(--highlight);
+
+      margin-bottom: 0.35rem;
+
+    }
+
+
+
+    .game p {
+
+      font-size: 0.95rem;
+
+    }
+
+
+
+    .game-controls {
+
+      margin-top: 0.75rem;
+
+      display: grid;
+
+      gap: 0.6rem;
+
+    }
+
+
+
+    .game-row {
+
+      display: flex;
+
+      gap: 0.6rem;
+
+      flex-wrap: wrap;
+
+      align-items: center;
+
+    }
+
+
+
+    .chip {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      padding: 0.35rem 0.7rem;
+
+      border-radius: 999px;
+
+      border: 1px solid var(--border);
+
+      background: var(--cream);
+
+      color: var(--ink);
+
+      cursor: pointer;
+
+      font-weight: 800;
+
+      font-size: 0.9rem;
+
+      user-select: none;
+
+    }
+
+
+
+    .chip:hover,
+
+    .chip:focus-visible {
+
+      outline: none;
+
+      box-shadow: var(--focus);
+
+      border-color: var(--accent-border);
+
+    }
+
+
+
+    .chip.good {
+
+      background: rgba(34, 197, 94, 0.16);
+
+      border-color: rgba(34, 197, 94, 0.55);
+
+    }
+
+
+
+    .chip.bad {
+
+      background: rgba(239, 68, 68, 0.14);
+
+      border-color: rgba(239, 68, 68, 0.55);
+
+    }
+
   </style>
+
 </head>
+
 <body>
 
-  <div class="wrap">
-    <header>
-      <h1>LEARN ENGLISH FOUNDATIONAL SKILLS ONLINE</h1>
-      <p>Select a course to begin your assessment.</p>
-    </header>
+  <div class="toolbar" role="toolbar" aria-label="Display preferences">
 
-    <section id="course-selection">
-      <div class="skills-grid">
-        <div class="card">
-          <h3>Vocabulary Development</h3>
-          <button class="btn-course" onclick="startQuiz('Vocabulary')">Choose this course</button>
-        </div>
-        <div class="card">
-          <h3>Oral Language & Listening</h3>
-          <button class="btn-course" onclick="startQuiz('Oral')">Choose this course</button>
-        </div>
-      </div>
-    </section>
+    <span class="toolbar-label">Theme</span>
 
-    <div id="quiz-shell" hidden>
-      <div class="panel">
-        <h2 id="question-text">Question loading...</h2>
+    <div class="toggle-group" role="group" aria-label="Light or dark theme">
 
-        <div class="audio-control-group" id="audio-block">
-          <button type="button" class="btn-audio" onclick="playQuestionAudio()">
-            <span>🔊</span> Play Audio
-          </button>
-          <span style="font-size: 0.9rem; color: var(--muted);">Listen, then answer.</span>
-        </div>
+      <button type="button" class="toggle-btn" id="theme-light" aria-pressed="true" title="Light mode">
 
-        <div id="choices-container"></div>
-      </div>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+
+          <circle cx="12" cy="12" r="4" />
+
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+
+        </svg>
+
+        Light
+
+      </button>
+
+      <button type="button" class="toggle-btn" id="theme-dark" aria-pressed="false" title="Dark mode">
+
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+
+        </svg>
+
+        Dark
+
+      </button>
+
     </div>
+
+    <span class="toolbar-label" style="margin-left: 0.5rem;">Layout</span>
+
+    <div class="toggle-group" role="group" aria-label="Mobile or desktop layout">
+
+      <button type="button" class="toggle-btn" id="layout-desktop" aria-pressed="true" title="Desktop layout">
+
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+
+          <path d="M8 21h8M12 17v4" />
+
+        </svg>
+
+        Desktop
+
+      </button>
+
+      <button type="button" class="toggle-btn" id="layout-mobile" aria-pressed="false" title="Mobile layout">
+
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+
+          <rect x="7" y="2" width="10" height="20" rx="2" />
+
+          <path d="M12 18h.01" />
+
+        </svg>
+
+        Mobile
+
+      </button>
+
+    </div>
+
   </div>
 
-  <dialog id="start-modal" class="card" style="margin: auto; width: 400px;">
-    <h3 id="modal-title">Ready to start?</h3>
-    <p>This assessment helps place you in the right level. (Notice: feedback text removed as requested).</p>
-    
-    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
-      <input type="text" id="username" placeholder="Enter Name">
-      <button class="btn-next" onclick="confirmStart()">Start Assessment</button>
-    </div>
-  </dialog>
 
-  <script>
-    let currentCourse = "";
-    const modal = document.getElementById('start-modal');
-    const shell = document.getElementById('quiz-shell');
-    const audioBlock = document.getElementById('audio-block');
 
-    function startQuiz(courseType) {
-      currentCourse = courseType;
-      document.getElementById('modal-title').innerText = "Start " + courseType + " Assessment";
-      modal.showModal();
-    }
+  <div class="wrap">
 
-    function confirmStart() {
-      modal.close();
-      document.getElementById('course-selection').hidden = true;
-      shell.hidden = false;
+    <header class="site">
 
-      // APPLY SMART AUDIO LOGIC
-      if (currentCourse === 'Oral') {
-        shell.classList.add('oral-mode');
-      } else {
-        shell.classList.remove('oral-mode');
-      }
+      <p class="eyebrow">Online learning system</p>
 
-      loadQuestion();
-    }
+      <h1>LEARN ENGLISH FOUNDATIONAL SKILLS ONLINE</h1>
 
-    function loadQuestion() {
-      const qText = document.getElementById('question-text');
-      const container = document.getElementById('choices-container');
-      
-      if (currentCourse === 'Oral') {
-        qText.innerText = "Click the button above to listen to the question.";
-      } else {
-        qText.innerText = "Which word describes a thick, creamy soup?";
-      }
+      <p class="hero-lead">
 
-      container.innerHTML = `
-        <button class="choice-btn">Broth</button>
-        <button class="choice-btn">Chowder</button>
-        <button class="choice-btn">Clear</button>
-      `;
-    }
+        A structured path through the core building blocks of English—so learners can read with confidence,
 
-    function playQuestionAudio() {
-      // Simple logic to use Browser Text-to-Speech
-      const msg = new SpeechSynthesisUtterance("Which word describes a thick, creamy soup?");
-      window.speechSynthesis.speak(msg);
-    }
-  </script>
-</body>
-</html>
+        understand what they hear, and express ideas clearly in academic and everyday settings.
+
+      </p>
+
+      <p class="audience-note">
+
+        Designed for <strong style="color: var(--ink);">students</strong> building classroom confidence and
+
+        <strong style="color: var(--ink);">adults</strong> returning to study or English for work—clear layout,
+
+        calm colors, and practical focus at every level.
+
+      </p>
+
+      <nav class="pill-list" aria-label="Jump to skill areas">
+
+        <a class="pill" href="#phonemic">Phonemic Awareness &amp; Phonics</a>
+
+        <a class="pill" href="#vocabulary">Vocabulary Development</a>
+
+        <a class="pill" href="#fluency">Fluency</a>
+
+        <a class="pill" href="#comprehension">Reading Comprehension</a>
+
+        <a class="pill" href="#oral">Oral Language &amp; Listening</a>
+
+      </nav>
+
+    </header>
+
+
+
+    <section id="intro" aria-labelledby="intro-heading">
+
+      <h2 id="intro-heading">Introduction to this website</h2>
+
+      <div class="card">
+
+        <p>
+
+          This site presents an online learning system organized around five foundational skill areas in English.
+
+          Each area connects to the next: sound awareness supports decoding; decoding unlocks word learning;
+
+          fluent reading frees attention for meaning; comprehension turns text into understanding; and oral language
+
+          ties listening and speaking to everything learners read and write.
+
+        </p>
+
+        <p>
+
+          Use the sections below to see what each strand includes and how it supports long-term literacy and
+
+          communication. The layout is informational: it explains the system, why these skills matter, and what
+
+          learners gain from studying them in order online.
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <section id="why" aria-labelledby="why-heading">
+
+      <h2 id="why-heading">Why these foundational skills are needed</h2>
+
+      <div class="card">
+
+        <p>
+
+          English proficiency is not a single ability—it is a set of interlocking skills. Without strong foundations,
+
+          learners may memorize words or rules yet still struggle on new texts, in conversation, or when ideas become
+
+          more abstract. Foundational training closes gaps early: it builds automatic word recognition, deep word
+
+          knowledge, smooth reading, strategic understanding, and rich oral language so that effort can go toward
+
+          thinking and communicating rather than fighting the basics.
+
+        </p>
+
+        <p>
+
+          Research-aligned programs typically emphasize these same strands because they predict success in school,
+
+          work, and daily life. Together, they support learners who are new to English as well as those strengthening
+
+          skills for higher study or professional use.
+
+        </p>
+
+      </div>
+
+      <p class="note">
+
+        <strong>In short:</strong>
+
+        foundational skills reduce frustration, speed up progress on harder material, and make reading and
+
+        listening a reliable way to learn—not a constant barrier.
+
+      </p>
+
+    </section>
+
+
+
+    <section id="areas" aria-labelledby="areas-heading">
+
+      <h2 id="areas-heading">The five learning areas</h2>
+
+      <p style="margin-bottom: 0.5rem;">
+
+        Each choice below is a pillar of the system. Select a topic from the list at the top of the page, or read
+
+        through in sequence. Use <strong style="color: var(--ink);">Choose this course</strong> when you are ready to
+
+        enroll—your level will be checked before lessons begin.
+
+      </p>
+
+      <div class="skills-grid">
+
+        <article class="skill-card" id="phonemic">
+
+          <h3>Phonemic Awareness &amp; Phonics</h3>
+
+          <p>
+
+            Learners notice and manipulate sounds in words (phonemic awareness) and connect those sounds to letters
+
+            and spelling patterns (phonics). This foundation is essential for decoding new words accurately and for
+
+            spelling development—not only in early literacy but whenever texts introduce unfamiliar vocabulary.
+
+          </p>
+
+          <div class="course-actions">
+
+            <button type="button" class="btn-course" data-open-modal data-course="Phonemic Awareness &amp; Phonics">
+
+              Choose this course
+
+            </button>
+
+          </div>
+
+        </article>
+
+        <article class="skill-card" id="vocabulary">
+
+          <h3>Vocabulary Development</h3>
+
+          <p>
+
+            Knowing words deeply—multiple meanings, collocations, and academic terms—supports every subject and
+
+            every conversation. A dedicated vocabulary strand builds networks of related words and strategies for
+
+            inferring meaning from context, so comprehension does not collapse when terminology shifts.
+
+          </p>
+
+          <div class="course-actions">
+
+            <button type="button" class="btn-course" data-open-modal data-course="Vocabulary Development">
+
+              Choose this course
+
+            </button>
+
+          </div>
+
+        </article>
+
+        <article class="skill-card" id="fluency">
+
+          <h3>Fluency</h3>
+
+          <p>
+
+            Fluency combines accuracy, appropriate rate, and expression. When reading becomes smooth, the mind can focus
+
+            on ideas instead of laboring over each word. Fluency practice bridges word recognition and full
+
+            comprehension, especially for longer or more complex passages.
+
+          </p>
+
+          <div class="course-actions">
+
+            <button type="button" class="btn-course" data-open-modal data-course="Fluency">
+
+              Choose this course
+
+            </button>
+
+          </div>
+
+        </article>
+
+        <article class="skill-card" id="comprehension">
+
+          <h3>Reading Comprehension</h3>
+
+          <p>
+
+            This strand teaches how to extract main ideas, follow arguments, compare texts, and monitor understanding.
+
+            It turns decoding into learning: summarizing, questioning, inferring, and integrating what is read with
+
+            prior knowledge and purpose for reading.
+
+          </p>
+
+          <div class="course-actions">
+
+            <button type="button" class="btn-course" data-open-modal data-course="Reading Comprehension">
+
+              Choose this course
+
+            </button>
+
+          </div>
+
+        </article>
+
+        <article class="skill-card" id="oral" style="grid-column: 1 / -1;">
+
+          <h3>Oral Language &amp; Listening</h3>
+
+          <p>
+
+            Speaking and listening underpin reading and writing. Clear pronunciation, turn-taking, academic discussion,
+
+            and attentive listening help learners process lectures, participate in class, and align spoken and written
+
+            English. This area ensures literacy grows as communication in real contexts—not only on the page.
+
+          </p>
+
+          <div class="course-actions">
+
+            <button type="button" class="btn-course" data-open-modal data-course="Oral Language &amp; Listening">
+
+              Choose this course
+
+            </button>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+
+    <footer>
+
+      <p>LEARN ENGLISH FOUNDATIONAL SKILLS ONLINE — informational overview of an online learning system.</p>
+
+    </footer>
+
+  </div>
+
+
+
+  <dialog class="modal" id="course-dialog" aria-labelledby="cour
